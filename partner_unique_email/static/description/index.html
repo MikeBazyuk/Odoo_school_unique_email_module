@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8"/>
+    <style>
+        body  { font-family: Arial, sans-serif; max-width: 900px; margin: 0 auto; padding: 20px; color: #333; }
+        h1    { color: #1a3e6f; border-bottom: 3px solid #1a8fe3; padding-bottom: 10px; }
+        h2    { color: #1a3e6f; margin-top: 30px; }
+        .banner { width: 100%; height: 160px; background: linear-gradient(135deg, #1a3e6f 0%, #1a8fe3 100%);
+                  border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+        .banner-text { color: #fff; font-size: 28px; font-weight: bold; letter-spacing: 1px; }
+        .badge { display: inline-block; background: #1a8fe3; color: #fff;
+                 border-radius: 4px; padding: 3px 10px; font-size: 13px; margin: 2px; }
+        .section { background: #f0f6ff; border-left: 4px solid #1a8fe3;
+                   padding: 12px 16px; margin: 16px 0; border-radius: 0 6px 6px 0; }
+        code { background: #eef2f7; padding: 2px 6px; border-radius: 3px; font-size: 13px; }
+        table { border-collapse: collapse; width: 100%; margin: 12px 0; }
+        th { background: #1a3e6f; color: #fff; padding: 8px 12px; text-align: left; }
+        td { padding: 7px 12px; border-bottom: 1px solid #ddd; }
+        tr:hover td { background: #f0f6ff; }
+        .check { color: #27ae60; font-weight: bold; }
+        .cross { color: #e74c3c; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="banner">
+    <span class="banner-text">✉️ Partner Unique Email</span>
+</div>
+
+<h1>Partner Unique Email</h1>
+<p>
+    Розширення Odoo, яке <strong>забороняє наявність у системі декількох партнерів
+    з однаковим e-mail</strong>. Перевірка виконується при створенні та кожному
+    збереженні партнера.
+</p>
+
+<div class="section">
+    <span class="badge">Odoo 19.0</span>
+    <span class="badge">res.partner</span>
+    <span class="badge">Ukrainian</span>
+    <span class="badge">LGPL-3</span>
+</div>
+
+<h2>✨ Функціонал</h2>
+<table>
+    <tr><th>Можливість</th><th>Деталі</th></tr>
+    <tr>
+        <td>Унікальність e-mail</td>
+        <td>Перевіряється при створенні та редагуванні партнера</td>
+    </tr>
+    <tr>
+        <td>Регістронезалежність</td>
+        <td><code>User@Example.com</code> та <code>user@example.com</code> — дублікати</td>
+    </tr>
+    <tr>
+        <td>Порожній e-mail</td>
+        <td>Не обмежується — кілька партнерів без e-mail допустимі</td>
+    </tr>
+    <tr>
+        <td>Повідомлення про помилку</td>
+        <td>Відображає e-mail та ім'я партнера-дубліката</td>
+    </tr>
+</table>
+
+<h2>⚙️ Як це працює</h2>
+<div class="section">
+    <p>
+        Модуль додає метод <code>@api.constrains('email')</code> до моделі
+        <code>res.partner</code>. При кожному збереженні партнера з непустим
+        e-mail система шукає інших партнерів з таким самим e-mail
+        (оператор <code>=ilike</code> — регістронезалежний пошук).
+        Якщо дублікат знайдено — підіймається <code>ValidationError</code>
+        з повідомленням та ім'ям конфліктуючого партнера.
+    </p>
+</div>
+
+<h2>🚫 Приклади поведінки</h2>
+<table>
+    <tr><th>Дія</th><th>Результат</th></tr>
+    <tr>
+        <td>Створити партнера з новим унікальним e-mail</td>
+        <td><span class="check">✔ Дозволено</span></td>
+    </tr>
+    <tr>
+        <td>Створити партнера з e-mail, що вже існує</td>
+        <td><span class="cross">✘ ValidationError</span></td>
+    </tr>
+    <tr>
+        <td>Оновити e-mail на вже існуючий в іншого партнера</td>
+        <td><span class="cross">✘ ValidationError</span></td>
+    </tr>
+    <tr>
+        <td>Зберегти партнера з порожнім e-mail</td>
+        <td><span class="check">✔ Дозволено</span></td>
+    </tr>
+    <tr>
+        <td>Кілька партнерів без e-mail</td>
+        <td><span class="check">✔ Дозволено</span></td>
+    </tr>
+</table>
+
+<h2>🛠 Встановлення</h2>
+<div class="section">
+    <ol>
+        <li>Скопіюйте директорію <code>partner_unique_email</code> до папки <code>custom_addons</code>.</li>
+        <li>Перезапустіть Odoo та оновіть список застосунків.</li>
+        <li>Встановіть модуль <strong>Partner Unique Email</strong> через меню <em>Застосунки</em>.</li>
+    </ol>
+    <p><strong>Примітка:</strong> після встановлення перевірте наявні дані на дублікати e-mail
+       через <em>Контакти</em>, оскільки обмеження працює лише для нових/оновлених записів.</p>
+</div>
+
+<h2>📝 Автор</h2>
+<p>
+    <strong>Mykhailo Baziuk</strong> —
+    <a href="https://odoo.school/">Odoo School</a>
+</p>
+
+</body>
+</html>
