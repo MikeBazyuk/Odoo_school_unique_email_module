@@ -1,5 +1,5 @@
 {
-    'name': 'Partner Unique Email',
+    'name': 'Partner Unique Email Baziuk Odoo School',
     'summary': 'Забороняє наявність у системі декількох партнерів з однаковим e-mail',
     'description': """
 Partner Unique Email
