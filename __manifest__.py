@@ -20,9 +20,11 @@ e-mail адреси серед усіх партнерів у системі.
     'website': 'https://odoo.school/',
     'category': 'Extra Tools',
     'license': 'OPL-1',
-    'version': '19.0.1.0.0',
+    'version': '19.0.1.6.0',
 
-    'depends': ['base'],
+    'depends': ['base',
+                'partner_unique_email'
+                ],
 
     'external_dependencies': {
         'python': [],
@@ -34,6 +36,7 @@ e-mail адреси серед усіх партнерів у системі.
 
     'images': [
         'static/description/banner.png',
+        'static/description/icon.png'
     ],
 
     'application': False,
