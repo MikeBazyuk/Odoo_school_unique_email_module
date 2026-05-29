@@ -22,8 +22,7 @@ e-mail адреси серед усіх партнерів у системі.
     'license': 'LGPL-3',
     'version': '19.0.1.6.0',
 
-    'depends': ['base',
-                'partner_unique_email'
+    'depends': ['base'
                 ],
 
     'external_dependencies': {
